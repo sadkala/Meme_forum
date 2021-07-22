@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Meme forum</title>
+        <link rel="icon" href="{{url_for('static',filename='images/weed.png')}}">
+
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/forum.css')}}">
+
+        <div style="justify-content:center ;display:flex ;">
+            <img src="/static/images/star.jpg" alt="MEMEWAR" border="2">
+        </div>
+
+        <div class="Title">Meme</div>
+        <hr class="middleline">
+        
+        <script>
+            function test(){
+                id = {{pid}};
+                text = {{content | tojson }};
+                time = {{time | tojson }};
+
+                for(let i = 0; i <id.length; i++){
+                    let p = document.getElementById(id[i]);
+                    p.innerHTML += text[i] + "-----" + time[i] + "<br>";
+                }
+            }
+        </script>
+
+    </head>
+<body bgcolor="#cce4ff">
+        
+
+    <!--Homepage_Button-->
+        <form style="overflow:auto ;position:fixed;bottom:-4px ;right:10px; ;" method="POST" action="{{url_for('homepage')}}">
+            <button name="HomepageButton" type="submit" class="button"><span>Homepage</span></button>
+        </form>
+
+        <!--Post_Button-->
+        <form name="post" action="{{url_for('forum')}}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="4194304">
+            <input type="hidden" name="mode" value="regist">
+            <input id="postPassword" name="pwd" type="hidden" value="nsssssssss">
+            
+        <div id="tooglePostFormLink" class="random">
+            "["
+            <a href="#">Start a New Thread</a>
+            "]"
+        </div>
+
+        <!--Name-->
+        <table class="tableForm" id="postForm">
+            <tbody>
+                <tr data-type="Name">
+                    <td style="font-weight:bold ;">Name</td>
+                    <td>
+                        <input name="name" type="text" tabindex="1" placeholder="Anonymous">
+                    </td>
+                </tr>
+
+                <!--warning message-->
+                {% block content %}
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <p style="background-color:#ff9999 ;text-align:center ;font-size:large ;">{{msg}}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                {% endblock content %}
+                
+                <!--Email-->
+                <tr data-type="Options">
+                    <td style="font-weight:bold ;"> Email</td>
+                    <td>
+                        <input name="email_name" type="text" tabindex="2">
+                    </td>
+                </tr>
+
+                <!--Title-->
+                <tr data-type="Subject">
+                    <td style="font-weight:bold ;">Topic</td>
+                    <td>
+                        <input name="subject_name" type="text" tabindex="3">
+                        <input type="submit" name="PostThread" value="Post" tabindex="6">
+                    </td>
+                </tr>
+
+                <!--Comment-->
+                <tr data-type="Comment">
+                    <td style="font-weight:bold ;">Comment</td>
+                    <td>
+                      <textarea name="comment_name" cols="48" rows="4" wrap="soft" tabindex="4"></textarea>  
+                    </td>
+                </tr>
+
+                <!--File_Upload-->
+               <tr data-type="File">
+                   <td style="font-weight:bold ;">File</td>
+                   <td>
+                       <input id="postFile" name="upload_file" type="file" tabindex="7">
+                       <span class="desktop">
+                           "["
+                           <label>
+                               <input type="checkbox" name="spoiler" value="on" tabindex="8">
+                               "Spoiler?"
+                           </label>
+                           "]"
+                       </span>
+                   </td>
+                </tr>     
+            </tbody>
+        </table>
+
+        <hr class="middleline">
+
+        <div style="justify-content:center ;display:flex ;">
+            <img src="/static/images/drift.gif" alt="MEMEWAR" height="99px" width="399px" >
+        </div>
+
+    </form>
+
+        <hr>
+
+        <div>
+            <marquee behaviour="scroll" direction="down" scrollamount="2" >
+                <a style="color: red;">Donald Trump pass by and Make this Wall for Toxic Memer</a>
+            </marquee>
+        </div>      
+          
+
+            {% for say in says %}
+            <hr>
+                <div style="padding-top:1px ;padding-bottom:10px ;padding-right:auto ;">
+                    <div style="background-color:#b3d1ff ;">
+                        <div style="color:#208000;">
+                            <a style="font-weight:bold; color:black;">User:</a> {{ say['username'] }}// 
+
+                            <a>
+                                <a style="font-weight:bold; color:black;">Email:</a>{{ say['email']}}//
+                            </a>
+
+                            <a>{{ say['date'] }}//</a>
+
+                            <a style="font-weight:bold;">
+                                <a style="font-weight:bold; color:black;">Topic:</a>{{ say['subject'] }}//
+                            </a>
+
+                        </div>
+                        <a ><a style="font-weight:bold; ">Comment:</a>{{ say['comment'] }}</a>
+                              
+                    </div>
+
+                    <div>
+                        <form action="{{url_for('reply')}}" method="POST">
+                            <div >
+                                <pre>
+                                    <p id="{{ say['pid'] }}"></p>
+                                </pre>
+                                <textarea name="replyBox" cols="30" rows="2"></textarea>
+                                <input type="text" name ="pid" value="{{ say['pid'] }}" style="display: none;">
+                                <input type="submit" name="reply">
+                                
+                            </div >
+
+
+                        </form>
+
+                    </div>
+                </div>
+            {% endfor %}
+            <script>test()</script>
+
+
+        <div style="text-align:center ;font-size:smaller ;font-weight: bold ;">
+            <a>All trademark and Copyrights are owned by their respective parties.Image Uploaded and Comment are owned by thr Post Owners.</a>
+        </div>
+</html>

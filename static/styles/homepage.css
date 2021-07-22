@@ -1,0 +1,62 @@
+.box-bar{
+    width: 800px;
+    border:1px black solid;
+    background-color: brown;
+    padding:0;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin: auto;
+}
+
+.box-content{
+   width: 800px;
+    border: 1px black solid;
+    padding:0;
+    padding-top:0px;
+    margin:0;
+    margin-bottom: 0.5em;
+    margin: auto;
+    margin-bottom:0.5em ;
+    
+}
+
+.box-bar2{
+    width: 800px;
+    height: 45px;
+    border:1px black solid;
+    background-color: #ffcc99;
+    padding:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin: auto;
+}
+
+.column{
+    border: 1px;
+    margin: auto;
+    float: left;
+    width: 12em;
+}
+
+.board{
+    color: red;
+    text-decoration: none;
+    font-size: larger;
+}
+
+.board:hover{
+    color: black;
+    background-color: #cfc;
+}
+
+.logo{
+    text-align: center;
+    color:red;
+    font-size: 5cm;
+    font-style:italic;
+    font-weight: bold;
+}
+
+li{
+    list-style: none;
+}

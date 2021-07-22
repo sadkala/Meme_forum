@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>
+            比大小游戲
+        </title>
+
+        
+    </head>
+
+    <body>
+        
+        <form>
+
+            <script>
+                function addTextBox(){
+                    var x = document.getElementById("amount").value;
+                    document.getElementById("textfield").innerHTML = x;
+                }
+            </script>
+
+            <label for="amount">請輸入數值</label>
+            <input type="number" id="amount" value="0" >
+            
+            <br>
+            <br>
+
+            <label>賭注</label>
+            <input type="radio" id="bet100" name="bet">
+            <label for="bet100">100</label>
+            <input type="radio" id="bet500" name="bet">
+            <label for="bet500">500</label>
+            <input type="radio" id="bet1000" name="bet">
+            <label for="bet1000">1000</label>
+
+            <br>
+            <br>
+
+            <button onclick="addTextBox()"> 比大小</button>
+            
+            <br>
+
+            <p id="textfield"></p>
+        </form>
+    </body>
+</html>
